@@ -6,13 +6,19 @@ const nameFilter = document.querySelector("#name");
 const notFoundMessage = document.querySelector("#not-found-message");
 
 let allPokemons = []
+let gen =[]
 
-fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
-.then((Response)=>Response.json())
+fetch(`https://pokeapi.co/api/v2/generation/1`)
+.then((Response )=>Response.json())
 .then((data)=>{
-    allPokemons=data.results;
-    displayPokemons(allPokemons)
+    gen = data.pokemon_species.sort((a, b) => {
+    const idA = a.url.split("/")[6];
+    const idB = b.url.split("/")[6];
+    return idA - idB;
+});
+    displayPokemons(gen);
 })
+
 
 async function fetchPokemonDataBeforeRedirect(id) {
     try{
@@ -26,6 +32,7 @@ async function fetchPokemonDataBeforeRedirect(id) {
         console.error("Failed to fetch Pokemon data before redirect");
     }
 }
+
 
 
 function displayPokemons(pokemon){
@@ -43,7 +50,7 @@ function displayPokemons(pokemon){
                 <img src = "https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/versions/generation-vii/icons/${pokemonID}.png" alt="${pokemon.name}"/>
             </div>
             <div class = "name-wrap">
-                <p class = "body3-fonts"> #${pokemon.name}</p>
+                <p class = "body3-fonts"> ${pokemon.name}</p>
             </div>
         `;
 
@@ -93,4 +100,3 @@ function clearSearch (){
     displayPokemons(allPokemons);
     notFoundMessage.style.display = "none";
 }
-

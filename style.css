@@ -84,7 +84,7 @@ body {
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Press Start 2P", sans-serif;
 }
 
 .main {
@@ -260,8 +260,8 @@ body {
   border-radius: 8px;
   box-shadow: var(--drop-shadow);
   background-color: var(--grayscale-white);
-  width: 8.85rem;
-  height: 8.85rem;
+  width: 10.85rem;
+  height: 10.85rem;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -283,8 +283,8 @@ body {
 }
 
 .list-item .img-wrap {
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
   margin: auto;
 }
 

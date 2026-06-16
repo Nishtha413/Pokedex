@@ -1,4 +1,4 @@
-const MAX_POKEMON = 151;
+const MAX_POKEMON = 135;
 const listWrapper = document.querySelector(".list-wrapper");
 const searchInput = document.querySelector("#search-input");
 const numberFilter = document.querySelector("#number");
@@ -11,17 +11,13 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
 .then((Response)=>Response.json())
 .then((data)=>{
     allPokemons=data.results;
-    console.log(allPokemons);
-    displayPokemons(allPokemons); 
+    displayPokemons(allPokemons)
 })
 
 async function fetchPokemonDataBeforeRedirect(id) {
     try{
-        const [pokemon, pokemonSpecies] = await Promise.all([
+        const [pokemon] = await Promise.all([
             fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res)=>
-            res.json()
-        ),
-        fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then((res)=>
             res.json()
         ),
     ])
@@ -44,7 +40,7 @@ function displayPokemons(pokemon){
                 <p class = "caption-fonts"> #${pokemonID}</p>
             </div>
             <div class = "img-wrap">
-                <img src = "https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonID}.svg" alt="${pokemon.name}"/>
+                <img src = "https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/versions/generation-vii/icons/${pokemonID}.png" alt="${pokemon.name}"/>
             </div>
             <div class = "name-wrap">
                 <p class = "body3-fonts"> #${pokemon.name}</p>
@@ -97,3 +93,4 @@ function clearSearch (){
     displayPokemons(allPokemons);
     notFoundMessage.style.display = "none";
 }
+

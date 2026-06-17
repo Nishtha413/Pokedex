@@ -1,3 +1,4 @@
+
 const listWrapper = document.querySelector(".list-wrapper");
 const searchInput = document.querySelector("#search-input");
 const numberFilter = document.querySelector("#number");
@@ -8,10 +9,13 @@ const notFoundMessage = document.querySelector("#not-found-message");
 let allPokemons =[]
 // idk displaying pokemons according to the generation
 const genSelection = document.querySelectorAll(".gen-text");
- fetchPokemonGeneration(1);
+
+fetchPokemonGeneration(1);
+
 genSelection.forEach((item) => {
     item.addEventListener("click", () => {
-        const genNumber = item.dataset.gen
+        addAndRemoveActiveClass(genSelection,item);
+        const genNumber = item.dataset.gen;
         fetchPokemonGeneration (genNumber);
     });
 });
@@ -29,23 +33,20 @@ function fetchPokemonGeneration (genNumber){
     });
         displayPokemons(allPokemons);
     })
-
-
-    async function fetchPokemonDataBeforeRedirect(id) {
-        try{
-            const [pokemon] = await Promise.all([
-                fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res)=>
-                res.json()
-            ),
-        ])
-        return true;
-        }catch(error){
-            console.error("Failed to fetch Pokemon data before redirect");
-        }
-    }
 }
 
-
+async function fetchPokemonDataBeforeRedirect(id) {
+    try{
+        const [pokemon] = await Promise.all([
+            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res)=>
+            res.json()
+        ),
+    ])
+    return true;
+    }catch(error){
+        console.error("Failed to fetch Pokemon data before redirect");
+    }
+}
 
 function displayPokemons(pokemon){
     listWrapper.innerHTML="";
@@ -111,4 +112,11 @@ function clearSearch (){
     searchInput.value = "";
     displayPokemons(allPokemons);
     notFoundMessage.style.display = "none";
+}
+
+function addAndRemoveActiveClass(genSelection,item){
+    genSelection.forEach((item) => {
+            item.classList.remove("active");
+        });
+        item.classList.add("active");
 }

@@ -534,8 +534,9 @@ div#not-found-message {
 .generation-wrapper{
   display: flex;
   font-size: var(--body2-font-size);
-  justify-content: center;
-  width:100%
+  flex-grow: auto;
+  width:90vw;
+  gap:4px;
 }
 
 .gen-text{
@@ -555,6 +556,12 @@ li{
 
 li:hover {
   cursor: pointer;
+  background-color:var(--grayscale-white);
+  color:var(--identity-primary);
+  padding:10px;
+}
+
+.active {
   background-color:var(--grayscale-white);
   color:var(--identity-primary);
   padding:10px;

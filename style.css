@@ -530,3 +530,32 @@ div#not-found-message {
   height: auto;
   background-color: var(--identity-primary);
 }
+
+.generation-wrapper{
+  display: flex;
+  font-size: var(--body2-font-size);
+  justify-content: center;
+  width:100%
+}
+
+.gen-text{
+  padding: 10px;
+  border: 2px inset var(--grayscale-white);
+  border-radius: 5px;
+  color:var(--grayscale-white);
+  line-height: var(--common-line-height);
+  text-align: center;
+  
+}
+
+li{
+  list-style-type: none;
+  
+}
+
+li:hover {
+  cursor: pointer;
+  background-color:var(--grayscale-white);
+  color:var(--identity-primary);
+  padding:10px;
+}

@@ -4,10 +4,23 @@ const numberFilter = document.querySelector("#number");
 const nameFilter = document.querySelector("#name");
 const notFoundMessage = document.querySelector("#not-found-message");
 
+
+// idk displaying pokemons according to the generation
+
+const genSelection = document.querySelectorAll(".gen-text");
+let genNumber = 1;
+
+genSelection.forEach((item) => {
+    item.addEventListener("click", () => {
+         genNumber = item.dataset.gen
+        console.log(genNumber)
+    });
+});
+
 let allPokemons = []
 let gen =[]
 
-fetch(`https://pokeapi.co/api/v2/generation/1`)
+fetch(`https://pokeapi.co/api/v2/generation/${genNumber}`)
 .then((Response )=>Response.json())
 .then((data)=>{
     gen = data.pokemon_species.sort((a, b) => {

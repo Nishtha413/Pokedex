@@ -5,43 +5,43 @@ const nameFilter = document.querySelector("#name");
 const notFoundMessage = document.querySelector("#not-found-message");
 
 
+let allPokemons =[]
 // idk displaying pokemons according to the generation
-
 const genSelection = document.querySelectorAll(".gen-text");
-let genNumber = 1;
-
+ fetchPokemonGeneration(1);
 genSelection.forEach((item) => {
     item.addEventListener("click", () => {
-         genNumber = item.dataset.gen
-        console.log(genNumber)
+        const genNumber = item.dataset.gen
+        fetchPokemonGeneration (genNumber);
     });
 });
 
-let allPokemons = []
-let gen =[]
-
-fetch(`https://pokeapi.co/api/v2/generation/${genNumber}`)
-.then((Response )=>Response.json())
-.then((data)=>{
-    gen = data.pokemon_species.sort((a, b) => {
-    const idA = a.url.split("/")[6];
-    const idB = b.url.split("/")[6];
-    return idA - idB;
-});
-    displayPokemons(gen);
-})
 
 
-async function fetchPokemonDataBeforeRedirect(id) {
-    try{
-        const [pokemon] = await Promise.all([
-            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res)=>
-            res.json()
-        ),
-    ])
-    return true;
-    }catch(error){
-        console.error("Failed to fetch Pokemon data before redirect");
+function fetchPokemonGeneration (genNumber){
+    fetch(`https://pokeapi.co/api/v2/generation/${genNumber}`)
+    .then((Response )=>Response.json())
+    .then((data)=>{
+        allPokemons = data.pokemon_species.sort((a, b) => {
+        const idA = a.url.split("/")[6];
+        const idB = b.url.split("/")[6];
+        return idA - idB;
+    });
+        displayPokemons(allPokemons);
+    })
+
+
+    async function fetchPokemonDataBeforeRedirect(id) {
+        try{
+            const [pokemon] = await Promise.all([
+                fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res)=>
+                res.json()
+            ),
+        ])
+        return true;
+        }catch(error){
+            console.error("Failed to fetch Pokemon data before redirect");
+        }
     }
 }
 

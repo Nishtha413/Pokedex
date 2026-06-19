@@ -158,7 +158,7 @@ function displayPokemonDetails(pokemon){
     document.querySelector(".pokemon-id-wrap .body2-fonts").textContent = `#${String(id).padStart(3, "0")}`;
 
     const imageElement = document.querySelector(".detail-img-wrapper img");
-    imageElement.src= `https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
+    imageElement.src= `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
     imageElement.alt = name;
 
     const typeWrapper = document.querySelector(".power-wrapper");

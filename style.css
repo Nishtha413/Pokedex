@@ -134,7 +134,7 @@ body {
   background-color: var(--grayscale-white);
   border-radius: 16px;
   box-shadow: var(--drop-shadow-inner);
-  height: 32px;
+  height: 36px;
   gap: 8px;
 }
 
@@ -150,7 +150,9 @@ body {
   width: 60%;
   border: none;
 }
-
+.search-wrap > input::placeholder{
+  font-size: 14px;
+}
 .sort-wrapper {
   position: relative;
 }
@@ -260,7 +262,7 @@ body {
   border-radius: 8px;
   box-shadow: var(--drop-shadow);
   background-color: var(--grayscale-white);
-  width: 10.85rem;
+  width: 12.85rem;
   height: 10.85rem;
   text-align: center;
   text-decoration: none;
@@ -340,6 +342,7 @@ body {
 .detail-img-wrapper img {
   width: 100%;
   height: 100%;
+  image-rendering: pixelated;
 }
 
 .detail-card-detail-wrapper {
@@ -534,9 +537,10 @@ div#not-found-message {
 .generation-wrapper{
   display: flex;
   font-size: var(--body2-font-size);
-  flex-grow: auto;
+  flex-wrap: wrap;
   width:90vw;
   gap:4px;
+  justify-content: center;
 }
 
 .gen-text{

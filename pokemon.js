@@ -7,6 +7,9 @@ const notFoundMessage = document.querySelector("#not-found-message");
 
 
 let allPokemons =[]
+
+
+
 // idk displaying pokemons according to the generation
 const genSelection = document.querySelectorAll(".gen-text");
 
@@ -17,6 +20,7 @@ genSelection.forEach((item) => {
         addAndRemoveActiveClass(genSelection,item);
         const genNumber = item.dataset.gen;
         fetchPokemonGeneration (genNumber);
+        fetchPokemonSprites(genNumber);
     });
 });
 
@@ -53,6 +57,7 @@ function displayPokemons(pokemon){
 
     pokemon.forEach((pokemon)=>{
         const pokemonID = pokemon.url.split("/")[6];
+        const pokemonName = pokemon.name;
         const listItem = document.createElement("div");
         listItem.className = "list-item";
         listItem.innerHTML=`
@@ -60,7 +65,7 @@ function displayPokemons(pokemon){
                 <p class = "caption-fonts"> #${pokemonID}</p>
             </div>
             <div class = "img-wrap">
-                <img src = "https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/versions/generation-vii/icons/${pokemonID}.png" alt="${pokemon.name}"/>
+                <img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonID}.png" alt="${pokemon.name}"/>
             </div>
             <div class = "name-wrap">
                 <p class = "body3-fonts"> ${pokemon.name}</p>
